@@ -1,5 +1,8 @@
 package at.va.todos.todos.model;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,10 +11,16 @@ public class Todo {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
+
+    @NotNull
+    @Size(min=2, message = "The name must be longer")
     @Column (name="task_name")
     private String name;
+
+    @NotNull(message = "The Responsible-name must not be null")
     @Column (name="task_responsible")
     private String responsible;
+
     @Column
     private Boolean isTaskDone = false;
 
